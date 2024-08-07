@@ -32,6 +32,14 @@ function restrictInput(element, event) {
 	}
 }
 
+function nextStep(){
+	$(`#wizrd_1_pro`).removeClass(`active_wizrd`).addClass('completed');
+	$(`#wizrd_2_pro`).addClass(`active_wizrd`);
+
+	$(`#step-1-div`).hide();
+	$(`#step-2-div`).show();
+}
+
 
 function fillInfoAndValidate(){
     // get user name

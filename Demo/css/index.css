@@ -98,11 +98,6 @@ form label {
     padding: 2rem 5rem;
 
 }
-.consent-text-div{
-  height: calc(63vh - 20px);
-  overflow-y: auto;
-  margin-bottom: 5px;
-}
 .main-consent-div{
   padding: 1rem 5rem;
 }

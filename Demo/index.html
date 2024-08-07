@@ -35,7 +35,7 @@
 <body>
     <div class="step-container">
         <div class="stepper-wrapper">
-            <div class="stepper-item active_wizrd" current-step="1" next-step="2" id="wizrd_1_pro">
+            <div class="stepper-item active_wizrd" id="wizrd_1_pro">
               <div class="step-counter"><span class="step">1</span></div>
               <div class="step-name">Step 1</div>
             </div>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="body">
-        <div class="signup-container" id="step-1-div" style="display: none;">
+        <div class="signup-container" id="step-1-div">
             <div class="signup-left">
                 <img src="/img/avanse-logo.jpg" alt="" class="">
                 <div class="mt-2">
@@ -72,16 +72,16 @@
                     </div>
                     <label for="lan">LAN :</label>
                     <input id="lan" type="text" class="form-control mb-3" placeholder="Enter your LAN" onkeypress="return restrictInput(this, event);" onpaste="return restrictInput(this, event);" value="">
-                    <button type="button" style="width: 100%;" class="btn btn-info">Next</button>
+                    <button type="button" onclick="nextStep()" style="width: 100%;" class="btn btn-info">Next</button>
                 </form>
             </div>
         </div>
 
-        <div id="step-2-div">
+        <div id="step-2-div" style="display: none;">
             <!-- style="display: none;" -->
              <div  class="main-consent-div">
                 <div class="consent-content">
-                    <div class="consent-text-div" > 
+                    <div class="mb-2" > 
                         <b> Co – Lending Arrangement</b><br> 
                         <b> Co-Lending</b>
                         <i>  
@@ -131,13 +131,13 @@
                             and Protection Cell (CEPC) in RBI.” <br><br></i>
 
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="agreeTermAndCond" checked>
-                        <label class="form-check-label" for="agreeTermAndCond">
-                            I acknowledge that I have read, understood, and agree to the terms and conditions outlined above.
-                        </label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mt-1">
+                    <div class="d-flex flex-column align-items-center justify-content-center mt-1 gap-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="agreeTermAndCond" checked="">
+                            <label class="form-check-label" for="agreeTermAndCond">
+                                I acknowledge that I have read, understood, and agree to the terms and conditions outlined above.
+                            </label>
+                        </div>
                         <button class="btn btn-success">Continue</button>
                     </div>
                 </div>
