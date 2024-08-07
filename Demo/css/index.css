@@ -101,3 +101,13 @@ form label {
 .main-consent-div{
   padding: 1rem 5rem;
 }
+
+.downArrow{
+  position: fixed;
+  width: fit-content;
+  bottom: 20px;
+  right: 20px;
+  color: black;
+  font-size: 3rem;
+  text-decoration: none;
+}

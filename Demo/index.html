@@ -28,6 +28,18 @@
             $(`#dateIcon`).on('click', function() {
                 dateInput.datepicker('show');
             });
+
+            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50) {
+		        $(`.downArrow`).hide();
+	        }
+
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                    $(`.downArrow`).hide(); // Hide the div
+                } else {
+                    $(`.downArrow`).show(); // Show the div
+                }
+            });
         });
     </script>
 </head>
@@ -72,7 +84,7 @@
                     </div>
                     <label for="lan">LAN :</label>
                     <input id="lan" type="text" class="form-control mb-3" placeholder="Enter your LAN" onkeypress="return restrictInput(this, event);" onpaste="return restrictInput(this, event);" value="">
-                    <button type="button" onclick="nextStep()" style="width: 100%;" class="btn btn-info">Next</button>
+                    <button type="button" onclick="submitConsentForm();" style="width: 100%;" class="btn btn-info">Next</button>
                 </form>
             </div>
         </div>
@@ -138,10 +150,11 @@
                                 I acknowledge that I have read, understood, and agree to the terms and conditions outlined above.
                             </label>
                         </div>
-                        <button class="btn btn-success">Continue</button>
+                        <button id="continue-btn" class="btn btn-success">Continue</button>
                     </div>
                 </div>
              </div>
+             <a class="downArrow" href="#continue-btn"><i class="bi bi-arrow-down-circle"></i></a>
         </div>
     </div>
     

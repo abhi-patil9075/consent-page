@@ -1,9 +1,3 @@
-var userInfo = {
-    name : "",
-    lan : "",
-    dob : ""
-}
-
 function restrictInput(element, event) {
     
     if (event.type === "paste") {
@@ -32,12 +26,57 @@ function restrictInput(element, event) {
 	}
 }
 
+async function submitConsentForm(){
+	let name = $(`#name`).val();
+	let dateOfBirth = $(`#dob`).val();
+	let lan = $(`#lan`).val();
+	if(validateStringValue(name) && validateStringValue(dateOfBirth) && validateStringValue(lan)){
+		let userInfo = {
+			name : name,
+			dateOfBirth : dateOfBirth,
+			lan : lan
+		}
+		let status = await validateCustomer(userInfo);
+		if(status){
+			nextStep();
+		}
+	}
+	
+}
+
+function validateStringValue(string){
+	if(string != undefined && string != null && string.trim() != ""){
+		return true;
+	}
+	return false;
+}
+
 function nextStep(){
 	$(`#wizrd_1_pro`).removeClass(`active_wizrd`).addClass('completed');
 	$(`#wizrd_2_pro`).addClass(`active_wizrd`);
 
 	$(`#step-1-div`).hide();
 	$(`#step-2-div`).show();
+	$(`.downArrow`).show();	
+}
+
+async function validateCustomer(userInfo){
+	let status = true;
+	// this will check costumer in server site 
+	// await $.ajax({
+    //     type : "GET",
+    //     url : YOUR_URL,
+	// 	data: JSON.stringify(userInfo),
+    //     error : function(response, error, thrownError) {
+    //         displayError(response, error, thrownError);
+    //     },
+    //     success : function success(response) {
+    //         var res = eval(response);
+    //         status = res.status;
+    //     }
+	// });
+
+	return status;
 }
 
 
