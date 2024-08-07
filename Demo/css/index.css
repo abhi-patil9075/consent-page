@@ -79,6 +79,14 @@ form label {
   .signup-right {
     width: 100%;
   }
+
+  .main-consent-div{
+    padding: 15px !important;
+  }
+
+  .consent-content{
+    padding: 1rem 1rem !important;
+  }
 }
 
 .consent-content {
@@ -91,8 +99,8 @@ form label {
 
 }
 .consent-text-div{
-  height: 375px;
-  overflow: auto;
+  height: calc(63vh - 20px);
+  overflow-y: auto;
   margin-bottom: 5px;
 }
 .main-consent-div{
