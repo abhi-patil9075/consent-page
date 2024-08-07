@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/stepBar.css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="js/index.js"></script>
+
+    <script>
+        $(document).ready(function (){
+            const dateInput = $(`#dob`);
+            dateInput.datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+            $(`#dateIcon`).on('click', function() {
+                dateInput.datepicker('show');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="step-container">
+        <div class="stepper-wrapper">
+            <div class="stepper-item active_wizrd" current-step="1" next-step="2" id="wizrd_1_pro">
+              <div class="step-counter"><span class="step">1</span></div>
+              <div class="step-name">Step 1</div>
+            </div>
+            <div class="stepper-item" id="wizrd_2_pro" current-step="2" prev-step="1">
+              <div class="step-counter"><span class="step">2</span></div>
+              <div class="step-name">Step 2</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="signup-container" id="step-1-div" style="display: none;">
+            <div class="signup-left">
+                <img src="/img/avanse-logo.jpg" alt="" class="">
+                <div class="mt-2">
+                    <h4 class="text-center p-5 pb-3 pt-3">Let Your Dreams Take Flight with an Avanse <span style="color: orange;">Education Loan!</span></h4>
+                    <ul class="fw-bold list-items">
+                        <li> Loan Amount Ranging From Rs. 10 Lacs to Rs. 1.25Cr.*</li>
+                        <li> Attractive student loan interest rates</li>
+                        <li> 100% finance for course fee and other expenses</li>
+                        <li> Sanction within 3 days*</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="signup-right">
+                <h4 class="text-center">Help us connect with you</h4>
+                <form>
+                    <label for="name">Name :</label>
+                    <input id="name" type="text" class="form-control mb-3" placeholder="Enter Name" value="">
+                    <label for="dob">Date of birth :</label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="dob" class="form-control" placeholder="Date of birth" value="" size="16" readonly="readonly">
+                        <span class="input-group-text" id="dateIcon"><i class="bi bi-calendar2-week"></i></span> 
+                    </div>
+                    <label for="lan">LAN :</label>
+                    <input id="lan" type="text" class="form-control mb-3" placeholder="Enter your LAN" onkeypress="return restrictInput(this, event);" onpaste="return restrictInput(this, event);" value="">
+                    <button type="button" style="width: 100%;" class="btn btn-info">Next</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="step-2-div">
+            <!-- style="display: none;" -->
+             <div  class="main-consent-div">
+                <div class="consent-content">
+                    <div class="consent-text-div" > 
+                        <b> Co – Lending Arrangement</b><br> 
+                        <b> Co-Lending</b>
+                        <i>  
+                        <ol style="list-style-type: upper-alpha;">
+                            <li>Borrower(s) hereby agree and acknowledge that the Lender may enter/has entered into a co-lending arrangement with certain
+                                banks eligible under the Co-lending Circular. The features of the co-lending arrangements and the roles and responsibilities of
+                                Lender and the co-lending banks under such co-lending arrangements are as set out under the Schedule A set out hereunder.
+                                Borrower(s) hereby further agree and undertake that pursuant to the co-lending arrangement, the aforementioned co-lending banks
+                                (“Co-Lender” / “Bank”) can exercise their option to participate in the loan and become a co lender along with the Lender to
+                                the extent of 80% (Eighty Percent) of the total principal to be lent by the Lender (“Bank Contribution”). Borrower(s)
+                                hereunder further agree and acknowledge that that such part of the loan may be assigned/transferred/novated by the Lender to the
+                                Bank, with the underlying security interest, (“Bank’s Participation”) absolutely and forever, to the end and intent that the
+                                Bank shall be deemed to be the full and absolute owner of the Bank’s Participation and as such legally and beneficially entitled to
+                                all such portion of the loan, free from all encumbrances. Further, the Borrower(s) agree and confirm that upon transfer to the
+                                Bank of the Bank Contribution by the Lender , the terms of the loan will be deemed to be novated in such a manner that Bank
+                                will become a co-lender of the loan and will be deemed to have executed this Agreement as a co-lender along with the Lender. </li>
+                            <li> Borrower(s) hereby agree and acknowledge, in case, this Loan is subject to the co-lending arrangement entered into by the Lender
+                                with a Bank, (i) in addition to the terms set out under the main body and other sections of the Loan Documents, the additional
+                                terms set out under the Schedule A herein shall also become applicable to such Loan and the Borrower(s) have carefully read and
+                                understood the same and (ii) the Borrower(s) shall without any dispute or demur or protest, comply with all the terms and
+                                conditions set out under the Schedule A herein and shall fulfil all its/their obligations towards the Bank (in their capacity as a
+                                Co-lender) and the Lenders, in terms of the Transaction Documents and (iii) in the event of inconsistency between the terms set out
+                                under the main body and other sections of the Loan Document and the additional terms set out under the Schedule A herein, the
+                                terms set out under the under the Schedule A herein shall prevail to the extent of such inconsistency (if applicable).</li>
+                          </ol>
+                          
+                            <b>KYC clause</b> <br>
+                            Borrower(s) hereby agree and acknowledge that, for facilitating the co-lending arrangement as above, the Know Your Customer
+                            (KYC) and related details are required to be shared with the Bank. Borrower(s) hereby provide its consent to the Lender for
+                            sharing such information with the Bank being a participant to this co-lending arrangement. Further Borrower(s) hereby consent to
+                            the Lender and the Bank to disclose any information or data related to the Loan and my personal KYC information to the
+                            TransUnion CIBIL Limited and /or any other agency authorized by the Reserve Bank of India, Central KYC Registry or any
+                            other competent authority. Borrower(s) further agree and acknowledge that the Borrower(s) is/are aware that such agencies may
+                            use or share such information as they deem fit and proper.<br><br>
+                           
+                           <b>FATCA</b> <br>
+                           
+                            Borrower(s) hereby agree and acknowledge that, Borrower(s) is/are citizen and permanent resident of India and subject to the tax
+                            regime of India. <br><br>
+                         
+                          <b>Grievance Redressal </b>  <br>
+                            The Borrower(s) may register a complaint with the Lender with respect to the Loan, at customer care of the Lender by way of e-
+                            mail to wecare@avanse.com or by way of call at 1800-266-0200 (For Customer calling from India) and (+91) 22-6680
+                            6464 (For customer calling from abroad) or by way of a direct written complaint addressed to concerned officer of the Lender at its
+                            registered office address. The Lender shall within 30 (Thirty) days, resolve the complaint, failing which the Borrower would have
+                            the option to escalate the same with the concerned Banking Ombudsman/Ombudsman for NBFCs or the Customer Education
+                            and Protection Cell (CEPC) in RBI.” <br><br></i>
+
+                    </div>
+                    <div style="text-align: center; padding-top: 5px;">
+                        <input type="checkbox" id="agreeTermAndCond"> 
+                        <label for="agreeTermAndCond"> I acknowledge that I have read, understood, and agree to the terms and conditions outlined above. </label><br>
+                        <button class="btn btn-success"  style="margin-top: 5px;">Continue</button>
+                    </div> 
+                </div>
+             </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
