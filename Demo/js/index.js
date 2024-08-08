@@ -1,3 +1,9 @@
+
+/**
+ * @description This function is used to restrict alphabetic values in LAN number input
+ * @param element 
+ * @param event 
+ */
 function restrictInput(element, event) {
     
     if (event.type === "paste") {
@@ -26,6 +32,10 @@ function restrictInput(element, event) {
 	}
 }
 
+/**
+ * @description This function is used to submit consent confirmation form. 
+ * This will also validate the form if data is full fill then user can proceed on next step
+ */
 async function submitConsentForm(){
 	const forms = document.querySelectorAll('#consent-form');
 
@@ -52,6 +62,9 @@ async function submitConsentForm(){
 	});
 }
 
+/**
+ * @description This function is used to hide first step and show second step 
+ */
 function nextStep(){
 
 	$(`#wizrd_1_pro`).removeClass(`active_wizrd`).addClass('completed');
@@ -62,6 +75,9 @@ function nextStep(){
 	$(`.downArrow`).show();	
 }
 
+/**
+ * @description This function is used to hide second step and show first step
+ */
 function prevStep(){
 	$(`#wizrd_1_pro`).addClass(`active_wizrd`).removeClass('completed');
 	$(`#wizrd_2_pro`).removeClass(`active_wizrd`);
@@ -71,7 +87,10 @@ function prevStep(){
 	$(`.downArrow`).hide();	
 }
 	
-
+/**
+ * @description This function is used to fill the user data in consent page on step 2
+ * @param userInfo 
+ */
 function fillUserInfoInConsentPage(userInfo) {
 	let today = new Date();
 	const formattedDate = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(today);
@@ -81,6 +100,11 @@ function fillUserInfoInConsentPage(userInfo) {
 	$("#consentDate").html(formattedDate);
 }
 
+/**
+ * @description This is Ajax to check the user is exist in our system. 
+ * If the user is not register in our system then it will not proceed next page
+ * @param userInfo 
+ */
 async function validateCustomer(userInfo){
 	let status = true;
 	// this will check costumer in server site 
@@ -100,6 +124,9 @@ async function validateCustomer(userInfo){
 	return status;
 }
 
+/**
+ * @description This function is used to download accepted consent agreement in pdf formate
+ */
 async function acceptAgreement(){
 
 	const isChecked = $("#agreeTermAndCond").is(":checked");
