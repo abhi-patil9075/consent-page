@@ -46,16 +46,9 @@ async function submitConsentForm(){
 				event.stopPropagation();
 				form.classList.add('was-validated');
 			}else{
-				let userInfo = {
-					name : $(`#name`).val(),
-					dateOfBirth : $(`#dob`).val(),
-					lan : $(`#lan`).val()
-				}
-				let status = await validateCustomer(userInfo);
-				if(status){
-					nextStep();
-					fillUserInfoInConsentPage(userInfo);
-				}
+				let userInfo = getCustomerFormData();
+				nextStep();
+				fillUserInfoInConsentPage(userInfo);
 			}
 
 		}, false);
@@ -101,67 +94,25 @@ function fillUserInfoInConsentPage(userInfo) {
 }
 
 /**
- * @description This is Ajax to check the user is exist in our system. 
- * If the user is not register in our system then it will not proceed next page
- * @param userInfo 
- */
-async function validateCustomer(userInfo){
-	let status = true;
-	// this will check costumer in server site 
-	// await $.ajax({
-    //     type : "GET",
-    //     url : YOUR_URL,
-	// 	data: JSON.stringify(userInfo),
-    //     error : function(response, error, thrownError) {
-    //         displayError(response, error, thrownError);
-    //     },
-    //     success : function success(response) {
-    //         var res = eval(response);
-    //         status = res.status;
-    //     }
-	// });
-
-	return status;
-}
-
-/**
- * @description This function is used to download accepted consent agreement in pdf formate
+ * @description This function is used to save data in server site and download a pdf file
  */
 async function acceptAgreement(){
 
+	const isServerAvailable = false ; // This variable help to not to make BE call this the time it get available 
 	const isChecked = $("#agreeTermAndCond").is(":checked");
 	if(isChecked){
-		// Load jsPDF library
-		const { jsPDF } = window.jspdf;
-				
-		// Create a new jsPDF instance
-		const doc = new jsPDF();
-		
-		// Capture the HTML content using html2canvas
-		const content = document.getElementById('consent-content-div-to-pdf');
-		const canvas = await html2canvas(content, { scale: 1.5 });
-		const imgData = canvas.toDataURL('image/jpeg');
 
-		// Add the captured image to the PDF
-		const toPadding = 10;
-		const imgWidth = 190; // Width of the PDF page in mm
-		const pageHeight = 297; // Height of the PDF page in mm
-		const imgHeight = (canvas.height * imgWidth) / canvas.width;
-		let heightLeft = imgHeight;
-		let position = 0;
-
-		doc.addImage(imgData, 'JPEG', 10, position + toPadding, imgWidth, imgHeight);
-		heightLeft -= pageHeight;
-
-		while (heightLeft >= 0) {
-			position = heightLeft - imgHeight;
-			doc.addPage();
-			doc.addImage(imgData, 'JPEG', 10, position + toPadding, imgWidth, imgHeight);
-			heightLeft -= pageHeight;
+		if(isServerAvailable){
+			let userData = getCustomerFormData();
+			let responseObject = await saveConsentDataAjax(userData); 
+			if(responseObject && responseObject.status == true){
+				downloadPDF();
+			}else{
+				showError(responseObject.errorMessage);
+			}
+		}else{
+			downloadPDF();
 		}
-
-		// Save the PDF
-		doc.save('consent.pdf');
 	}
 }
 
@@ -206,4 +157,86 @@ function initEvents(){
 			$('#continue-btn').prop('disabled', true);
 		}
 	 });
+}
+
+async function downloadPDF(){
+	// Load jsPDF library
+	const { jsPDF } = window.jspdf;
+					
+	// Create a new jsPDF instance
+	const doc = new jsPDF();
+
+	// Capture the HTML content using html2canvas
+	const content = document.getElementById('consent-content-div-to-pdf');
+	const canvas = await html2canvas(content, { scale: 1.5 });
+	const imgData = canvas.toDataURL('image/jpeg');
+
+	// Add the captured image to the PDF
+	const toPadding = 10;
+	const imgWidth = 190; // Width of the PDF page in mm
+	const pageHeight = 297; // Height of the PDF page in mm
+	const imgHeight = (canvas.height * imgWidth) / canvas.width;
+	let heightLeft = imgHeight;
+	let position = 0;
+
+	doc.addImage(imgData, 'JPEG', 10, position + toPadding, imgWidth, imgHeight);
+	heightLeft -= pageHeight;
+
+	while (heightLeft >= 0) {
+		position = heightLeft - imgHeight;
+		doc.addPage();
+		doc.addImage(imgData, 'JPEG', 10, position + toPadding, imgWidth, imgHeight);
+		heightLeft -= pageHeight;
+	}
+
+	// Save the PDF
+	doc.save('consent.pdf');
+}
+
+/**
+ * @description This function is used to get user data object form consent from
+ * @returns userInfo
+ */
+function getCustomerFormData(){
+	let userInfo = {
+		name : $(`#name`).val(),
+		dateOfBirth : $(`#dob`).val(),
+		lan : $(`#lan`).val()
+	}
+
+	return userInfo;
+}
+
+/**
+ * @description This is ajax which is save the user data in server site
+ * @param userData 
+ */
+async function saveConsentDataAjax(userData){
+	let responseObject;
+	await $.ajax({
+        type : "POST",
+        url : YOUR_URL,
+		data: userData,
+        error : function(response, error, thrownError) {
+            displayError(response, error, thrownError);
+        },
+        success : function success(response) {
+            responseObject = response;
+        }
+	});
+
+	return responseObject;
+}
+
+/**
+ * @description This function is used to show error message 
+ * @param errorMessage 
+ */
+function showError(errorMessage){
+	$.toast({
+		text:errorMessage, 
+		position : 'top-right',
+		bgColor : 'orange',
+		textColor : '#eee' 
+	});
 }
