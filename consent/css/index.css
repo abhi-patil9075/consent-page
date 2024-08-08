@@ -1,0 +1,143 @@
+body {
+  background: linear-gradient(135deg, #ffffff, #02afb2);
+  margin: 0;
+}
+
+.header{
+  padding: 10px 50px;
+  background-color: #ffffff;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  height: 9vh;
+}
+
+.header > h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-container {
+  height: 13vh;
+  padding: 1vh 0;
+  display: flex;
+  justify-content: center;
+}
+
+.body {
+  min-height: 78vh;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 10px;
+}
+
+.signup-container {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  width: 1250px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.signup-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 60%;
+  padding: 50px;
+}
+
+i {
+  cursor: pointer;
+}
+
+.signup-right {
+  padding: 55px;
+  width: 40%;
+  background: #fec64c;
+  background-image: linear-gradient(300deg, #ffffff, #fec64c);
+}
+
+.signup-right h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.signup-right p {
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background: #6c63ff;
+  border: none;
+}
+
+.list-items li {
+  margin-bottom: 10px;
+}
+
+form label {
+  font-size: small;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 900px) {
+  .signup-container {
+    flex-direction: column;
+  }
+
+  .signup-left,
+  .signup-right {
+    width: 100%;
+  }
+
+  .main-consent-div {
+    padding: 15px !important;
+  }
+
+  .consent-content {
+    padding: 1rem 1rem !important;
+  }
+
+  .downArrow{
+    color: gray !important;
+  }
+}
+
+.consent-content {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  padding: 2rem 5rem;
+
+}
+
+.main-consent-div {
+  padding: 1rem 5rem;
+}
+
+.downArrow {
+  position: fixed;
+  width: fit-content;
+  bottom: 20px;
+  right: 20px;
+  color: black;
+  font-size: 3rem;
+  text-decoration: none;
+}
+
+#consent-content-div-to-pdf {
+  margin: 0;
+  padding: 0;
+}
+
+#consent-user-info-div {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5rem;
+}
