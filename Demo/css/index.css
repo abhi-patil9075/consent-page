@@ -3,6 +3,19 @@ body {
   margin: 0;
 }
 
+.header{
+  padding: 10px 50px;
+  background-color: #ffffff;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  height: 9vh;
+}
+
+.header > h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .step-container {
   height: 13vh;
   padding: 1vh 0;
@@ -11,10 +24,11 @@ body {
 }
 
 .body {
-  min-height: 87vh;
+  min-height: 78vh;
   display: flex;
   align-items: start;
   justify-content: center;
+  padding: 10px;
 }
 
 .signup-container {
@@ -86,6 +100,10 @@ form label {
 
   .consent-content {
     padding: 1rem 1rem !important;
+  }
+
+  .downArrow{
+    color: gray !important;
   }
 }
 
