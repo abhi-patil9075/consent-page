@@ -66,12 +66,12 @@
 
 <body>
     <div class="step-container">
-        <div class="stepper-wrapper">
+        <div class="stepper-wrapper" onclick="prevStep();">
             <div class="stepper-item active_wizrd" id="wizrd_1_pro">
               <div class="step-counter"><span class="step">1</span></div>
               <div class="step-name">Step 1</div>
             </div>
-            <div class="stepper-item" id="wizrd_2_pro" current-step="2" prev-step="1">
+            <div class="stepper-item" id="wizrd_2_pro">
               <div class="step-counter"><span class="step">2</span></div>
               <div class="step-name">Step 2</div>
             </div>
@@ -94,17 +94,31 @@
             </div>
             <div class="signup-right">
                 <h4 class="text-center">Consent confirmation</h4>
-                <form>
-                    <label for="name" title="required field"><span style="color: red;" >*</span> Name :</label>
-                    <input id="name" type="text" class="form-control mb-3" placeholder="Enter Name" value="">
-                    <label for="dob" title="required field"><span style="color: red;" >*</span> Date of birth :</label>
-                    <div class="input-group mb-3">
-                        <input type="text" id="dob" class="form-control" placeholder="Date of birth" value="" size="16" readonly="readonly">
-                        <span class="input-group-text" id="dateIcon"><i class="bi bi-calendar2-week"></i></span> 
+                <form id="consent-form" novalidate>
+                    <div class="col-md-12 col-sm-12 mb-3">
+                        <label for="name" class="form-label" title="required field"><span style="color: red;" >*</span> Name :</label>
+                        <input id="name" type="text" class="form-control" placeholder="Enter Name" value="" required>
+                        <div class="invalid-feedback">
+                            Please provide a full name.
+                        </div>
                     </div>
-                    <label for="lan" title="required field"><span style="color: red;" >*</span> LAN :</label>
-                    <input id="lan" type="text" class="form-control mb-3" placeholder="Enter your LAN" onkeypress="return restrictInput(this, event);" onpaste="return restrictInput(this, event);" value="">
-                    <button type="button" onclick="submitConsentForm();" style="width: 100%;" class="btn btn-info">Next</button>
+                    <div class="col-md-12 col-sm-12 mb-3">
+                        <label for="dob" class="form-label" title="required field"><span style="color: red;" >*</span> Date of birth :</label>
+                        <div class="input-group">
+                            <input type="text" id="dob" class="form-control" placeholder="Date of birth" value="" size="16" onkeypress="return false;" onpaste="return false;" onchange="return false;" required>
+                            <span class="input-group-text" id="dateIcon"><i class="bi bi-calendar2-week"></i></span>
+                            <div class="invalid-feedback">Please provide a valid date.</div> 
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 col-sm-12 mb-3">
+                        <label for="lan" class="form-label" title="required field"><span style="color: red;" >*</span> LAN :</label>
+                        <input id="lan" type="text" class="form-control" placeholder="Enter your LAN" onkeypress="return restrictInput(this, event);" onpaste="return restrictInput(this, event);" value="" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid LAN.
+                        </div>
+                    </div>
+                    <button type="submit" onclick="submitConsentForm();" style="width: 100%;" class="btn btn-info">Next</button>
                 </form>
             </div>
         </div>

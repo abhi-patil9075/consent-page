@@ -1,5 +1,3 @@
-
-
 function restrictInput(element, event) {
     
     if (event.type === "paste") {
@@ -29,30 +27,29 @@ function restrictInput(element, event) {
 }
 
 async function submitConsentForm(){
-	let name = $(`#name`).val();
-	let dateOfBirth = $(`#dob`).val();
-	let lan = $(`#lan`).val();
-	if(validateStringValue(name) && validateStringValue(dateOfBirth) && validateStringValue(lan)){
-		let userInfo = {
-			name : name,
-			dateOfBirth : dateOfBirth,
-			lan : lan
-		}
-		let status = await validateCustomer(userInfo);
-		if(status){
-			nextStep();
-			fillUserInfoInConsentPage(userInfo);
-		}
-	}else{
-		
-	}
-}
+	const forms = document.querySelectorAll('#consent-form');
 
-function validateStringValue(string){
-	if(string != undefined && string != null && string.trim() != ""){
-		return true;
-	}
-	return false;
+	Array.from(forms).forEach(async form => {
+		form.addEventListener('submit', async event => {
+			event.preventDefault();
+			if (!form.checkValidity()) {
+				event.stopPropagation();
+				form.classList.add('was-validated');
+			}else{
+				let userInfo = {
+					name : $(`#name`).val(),
+					dateOfBirth : $(`#dob`).val(),
+					lan : $(`#lan`).val()
+				}
+				let status = await validateCustomer(userInfo);
+				if(status){
+					nextStep();
+					fillUserInfoInConsentPage(userInfo);
+				}
+			}
+
+		}, false);
+	});
 }
 
 function nextStep(){
@@ -63,6 +60,15 @@ function nextStep(){
 	$(`#step-1-div`).hide();
 	$(`#step-2-div`).show();
 	$(`.downArrow`).show();	
+}
+
+function prevStep(){
+	$(`#wizrd_1_pro`).addClass(`active_wizrd`).removeClass('completed');
+	$(`#wizrd_2_pro`).removeClass(`active_wizrd`);
+	
+	$(`#step-1-div`).show();
+	$(`#step-2-div`).hide();
+	$(`.downArrow`).hide();	
 }
 	
 
@@ -130,12 +136,4 @@ async function acceptAgreement(){
 		// Save the PDF
 		doc.save('hello_world.pdf');
 	}
-
-       
-
-	
 }
-
-
-
-
