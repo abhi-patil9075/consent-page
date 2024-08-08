@@ -27,24 +27,7 @@
             // here date picker is initialized
             initializeDatePicker();
 
-            $(window).on('scroll', function() {
-                if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-                    $(`.downArrow`).hide(); // Hide the div
-                } else {
-                    $(`.downArrow`).show(); // Show the div
-                }
-            });
-
-            $('#continue-btn').prop('disabled', true);
-
-            // agree term and condition button visibility. 
-            $('#agreeTermAndCond').change(function() {
-                if ($(this).is(':checked')) {
-                    $('#continue-btn').prop('disabled', false);
-                } else {
-                    $('#continue-btn').prop('disabled', true);
-                }
-             });
+            initEvents();
         });
     </script>
 </head>
@@ -68,7 +51,9 @@
         </div>
     </div>
 
+    <div>  <h2></h2></div>
     <div class="body">
+       
         <div class="signup-container" id="step-1-div"  >
             <div class="signup-left">
                 <img src="/img/avanse-logo.jpg" alt="" class="">

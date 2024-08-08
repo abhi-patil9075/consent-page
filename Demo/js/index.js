@@ -139,8 +139,8 @@ async function acceptAgreement(){
 		
 		// Capture the HTML content using html2canvas
 		const content = document.getElementById('consent-content-div-to-pdf');
-		const canvas = await html2canvas(content, { scale: 1 });
-		const imgData = canvas.toDataURL('image/png');
+		const canvas = await html2canvas(content, { scale: 1.5 });
+		const imgData = canvas.toDataURL('image/jpeg');
 
 		// Add the captured image to the PDF
 		const toPadding = 10;
@@ -150,18 +150,18 @@ async function acceptAgreement(){
 		let heightLeft = imgHeight;
 		let position = 0;
 
-		doc.addImage(imgData, 'PNG', 10, position + toPadding, imgWidth, imgHeight);
+		doc.addImage(imgData, 'JPEG', 10, position + toPadding, imgWidth, imgHeight);
 		heightLeft -= pageHeight;
 
 		while (heightLeft >= 0) {
 			position = heightLeft - imgHeight;
 			doc.addPage();
-			doc.addImage(imgData, 'PNG', 10, position + toPadding, imgWidth, imgHeight);
+			doc.addImage(imgData, 'JPEG', 10, position + toPadding, imgWidth, imgHeight);
 			heightLeft -= pageHeight;
 		}
 
 		// Save the PDF
-		doc.save('hello_world.pdf');
+		doc.save('consent.pdf');
 	}
 }
 
@@ -181,4 +181,29 @@ function initializeDatePicker(){
 	$(`#dateIcon`).on('click', function() {
 		dateInput.datepicker('show');
 	});
+}
+
+/**
+ * @description Here we have initialize the all page load event
+ */
+function initEvents(){
+	
+	$(window).on('scroll', function() {
+		if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+			$(`.downArrow`).hide(); // Hide the div
+		} else {
+			$(`.downArrow`).show(); // Show the div
+		}
+	});
+
+	$('#continue-btn').prop('disabled', true);
+
+	// agree term and condition button visibility. 
+	$('#agreeTermAndCond').change(function() {
+		if ($(this).is(':checked')) {
+			$('#continue-btn').prop('disabled', false);
+		} else {
+			$('#continue-btn').prop('disabled', true);
+		}
+	 });
 }
