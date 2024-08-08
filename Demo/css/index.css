@@ -111,3 +111,7 @@ form label {
   font-size: 3rem;
   text-decoration: none;
 }
+#consent-content-div-to-pdf {
+  margin: 0;
+  padding: 0;
+}
