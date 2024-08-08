@@ -137,3 +137,20 @@ async function acceptAgreement(){
 		doc.save('hello_world.pdf');
 	}
 }
+
+/**
+ * @description This function is used to initialize date picker for date of birth.
+ * 	We have using bootstrap datepicker library for pick date from calender
+ */
+function initializeDatePicker(){
+	const dateInput = $(`#dob`);
+    dateInput.datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        todayHighlight: true,
+    });
+
+	$(`#dateIcon`).on('click', function() {
+		dateInput.datepicker('show');
+	});
+}

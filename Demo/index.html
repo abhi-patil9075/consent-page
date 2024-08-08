@@ -24,23 +24,8 @@
     <script>
         $(document).ready(function (){
 
-            const dateInput = $(`#dob`);
-            dateInput.datepicker({
-                format: 'dd-mm-yyyy',
-                autoclose: true,
-                todayHighlight: true,
-            });
-
-            // Manually set the date to the default date
-            dateInput.datepicker('setDate', new Date(2000, 0, 1));
-
-            $(`#dateIcon`).on('click', function() {
-                dateInput.datepicker('show');
-            });
-
-            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50) {
-		        $(`.downArrow`).hide();
-	        }
+            // here date picker is initialized
+            initializeDatePicker();
 
             $(window).on('scroll', function() {
                 if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
