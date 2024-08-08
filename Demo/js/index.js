@@ -174,6 +174,7 @@ function initializeDatePicker(){
     dateInput.datepicker({
         format: 'dd-mm-yyyy',
         autoclose: true,
+		defaultViewDate: { year: 2000, month: 0, day: 1 },
         todayHighlight: true,
     });
 
