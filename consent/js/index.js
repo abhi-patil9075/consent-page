@@ -102,16 +102,16 @@ async function acceptAgreement(){
 	const isChecked = $("#agreeTermAndCond").is(":checked");
 	if(isChecked){
 
+		let userData = getCustomerFormData();
 		if(isServerAvailable){
-			let userData = getCustomerFormData();
 			let responseObject = await saveConsentDataAjax(userData); 
 			if(responseObject && responseObject.status == true){
-				downloadPDF();
+				downloadPDF(userData);
 			}else{
 				showError(responseObject.errorMessage);
 			}
 		}else{
-			downloadPDF();
+			downloadPDF(userData);
 		}
 	}
 }
@@ -159,7 +159,7 @@ function initEvents(){
 	 });
 }
 
-async function downloadPDF(){
+async function downloadPDF(userData){
 	// Load jsPDF library
 	const { jsPDF } = window.jspdf;
 					
@@ -190,7 +190,9 @@ async function downloadPDF(){
 	}
 
 	// Save the PDF
-	doc.save('consent.pdf');
+	let userName = userData.name.replaceAll(" ","_");
+	let pdfName = userName + "-avanse-consent.pdf";
+	doc.save(pdfName);
 }
 
 /**
