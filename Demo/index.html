@@ -23,12 +23,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         $(document).ready(function (){
+
             const dateInput = $(`#dob`);
             dateInput.datepicker({
                 format: 'dd-mm-yyyy',
                 autoclose: true,
-                todayHighlight: true
+                todayHighlight: true,
+                defaultDate: new Date(2000, 1, 1)
             });
+            
+
             $(`#dateIcon`).on('click', function() {
                 dateInput.datepicker('show');
             });
@@ -44,6 +48,17 @@
                     $(`.downArrow`).show(); // Show the div
                 }
             });
+
+            $('#continue-btn').prop('disabled', true);
+
+            // agree term and condition button visibility. 
+            $('#agreeTermAndCond').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#continue-btn').prop('disabled', false);
+                } else {
+                    $('#continue-btn').prop('disabled', true);
+                }
+             });
         });
     </script>
 </head>
@@ -147,23 +162,23 @@
                             the option to escalate the same with the concerned Banking Ombudsman/Ombudsman for NBFCs or the Customer Education
                             and Protection Cell (CEPC) in RBI.” <br><br></i>
                     </div>
-                    <div style="display: flex; justify-content: flex-end;">
+                    <div id="consent-user-info-div" >
                         <table>
                                 <tr>
                                     <td ><b>Name</b>  </td>
-                                    <td>: <span id="userName">-</span></td>
+                                    <td>: &nbsp;&nbsp;<span id="userName">-</span></td>
                                 </tr>
                                 <tr>
                                     <td> <b>Date of birth</b> </td>
-                                    <td>: <span id="userDob">-</span></td>
+                                    <td>: &nbsp;&nbsp;<span id="userDob">-</span></td>
                                 </tr>
                                 <tr>
                                     <td> <b>LAN</b> </td>
-                                    <td>: <span id="userLan">-</span></td>
+                                    <td>: &nbsp;&nbsp;<span id="userLan">-</span></td>
                                 </tr>
                                 <tr>
                                     <td> <b>Date </b></td>
-                                    <td>: <span id="consentDate">-</span></td>
+                                    <td>: &nbsp;&nbsp;<span id="consentDate">-</span></td>
                                 </tr>
                         </table>
                     </div>
@@ -182,7 +197,7 @@
                     </div>
                 </div>
              </div>
-             <a class="downArrow" href="#continue-btn"><i class="bi bi-arrow-down-circle"></i></a>
+             <a class="downArrow" href="#continue-btn" style="color: white;"><i class="bi bi-arrow-down-circle"></i></a>
         </div>
     </div>
 </body>

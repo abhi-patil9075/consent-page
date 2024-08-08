@@ -80,11 +80,11 @@ form label {
     width: 100%;
   }
 
-  .main-consent-div{
+  .main-consent-div {
     padding: 15px !important;
   }
 
-  .consent-content{
+  .consent-content {
     padding: 1rem 1rem !important;
   }
 }
@@ -95,14 +95,15 @@ form label {
   border: 1px solid white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    padding: 2rem 5rem;
+  padding: 2rem 5rem;
 
 }
-.main-consent-div{
+
+.main-consent-div {
   padding: 1rem 5rem;
 }
 
-.downArrow{
+.downArrow {
   position: fixed;
   width: fit-content;
   bottom: 20px;
@@ -111,7 +112,14 @@ form label {
   font-size: 3rem;
   text-decoration: none;
 }
+
 #consent-content-div-to-pdf {
   margin: 0;
   padding: 0;
+}
+
+#consent-user-info-div {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5rem;
 }

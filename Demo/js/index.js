@@ -110,26 +110,25 @@ async function acceptAgreement(){
 		const imgData = canvas.toDataURL('image/png');
 
 		// Add the captured image to the PDF
+		const toPadding = 10;
 		const imgWidth = 190; // Width of the PDF page in mm
 		const pageHeight = 297; // Height of the PDF page in mm
 		const imgHeight = (canvas.height * imgWidth) / canvas.width;
 		let heightLeft = imgHeight;
 		let position = 0;
 
-		doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+		doc.addImage(imgData, 'PNG', 10, position + toPadding, imgWidth, imgHeight);
 		heightLeft -= pageHeight;
 
 		while (heightLeft >= 0) {
 			position = heightLeft - imgHeight;
 			doc.addPage();
-			doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+			doc.addImage(imgData, 'PNG', 10, position + toPadding, imgWidth, imgHeight);
 			heightLeft -= pageHeight;
 		}
 
 		// Save the PDF
 		doc.save('hello_world.pdf');
-	}else{
-		alert(" Please check the check box to continue!")
 	}
 
        
